@@ -2,6 +2,7 @@
 #define QUEUE_H
 #include "driver/hardware.h"
 #include "driver/channels.h"
+#include "stateMachine.h"
 
 //enum til heisposisjon
 typedef enum {
@@ -15,9 +16,9 @@ typedef enum {
 } elevator_position;
 
 //matrise med orders på tilhørende plass
-static int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
+extern int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
 
-static elevator_position position = first; //må være static for å beholde verdien sin når utenfor scopet
+extern elevator_position position; //må være static for å beholde verdien sin når utenfor scopet
 
 void init_queue();
 
@@ -26,7 +27,7 @@ void print_queue(); //for testing
 //1 hvis elementer i kø, 0 hvis ikke
 int queue_exists();
 
-//oppdaterer kø på korresponderende knapp hvis trykket inn
+//oppdaterer kø på korresponderende knapp hvis trykket inn, setter lys
 void iterate_and_update_queue();
 
 //1 hvis elementer i kø over, 0 hvis ikke 
@@ -57,4 +58,4 @@ elevator_position get_position();
 
 void set_position(elevator_position pos);
 
-#endif
+#endif //QUEUE_H
