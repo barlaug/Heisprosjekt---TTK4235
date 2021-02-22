@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//static int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
-//static elevator_position position = first;
+int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
+elevator_position position = first;
 
 void init_queue(){
     for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
@@ -39,8 +39,20 @@ int queue_exists(){
     return result;
 }
 
-//oppdaterer kø på korresponderende knapp hvis trykket inn
-void iterate_and_update_queue();
+//oppdaterer kø på korresponderende knapp hvis trykket inn, setter også lys
+void iterate_and_update_queue(){
+    for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
+        for (int j = 0; j < HARDWARE_NUMBER_OF_BUTTONS; ++j){
+            //queue_matrix[i][j] = hardware_read_order(i,j);
+
+            if (hardware_read_order(i,j)){
+                hardware_command_order_light(i, j, 1);
+                queue_matrix[i][j] = 1;
+            }
+        }
+    }
+}
+
 
 int order_over_current_position(elevator_position position){
     for (int i = position; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
@@ -78,7 +90,11 @@ int order_at_floor_number(int floor){
     return 0;
 }
 
-void remove_order_at_floor_number(int floor);
+void remove_order_at_floor_number(int floor){
+    for(int i = 0; i < HARDWARE_NUMBER_OF_BUTTONS; ++i){
+        queue_matrix[floor][i] = 0;
+    }
+}
 
 //returnerer buttoncommand hvis i gyldig etasje
 int button_command_at_floor(elevator_position position);
