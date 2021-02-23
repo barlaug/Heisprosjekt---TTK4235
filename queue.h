@@ -46,7 +46,7 @@ int order_at_floor_number(int floor);
 void remove_order_at_floor_number(int floor);
 
 //returnerer buttoncommand hvis i gyldig etasje
-int button_command_at_floor(elevator_position position);
+int button_inside_at_floor(elevator_position position);
 
 //returnerer button_call_down hvis i gyldig etasje
 int button_down_at_floor(elevator_position position);
