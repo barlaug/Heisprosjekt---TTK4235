@@ -31,13 +31,16 @@ extern HardwareMovement current_direction;
 //statemachine funksjon med switch
 void state_machine_switch_case();
 
-//1
-void update_elevator_position();
+//oppdaterer position til floor, egen funksjon til de mellom
+void update_elevator_position_at_floor();
 
-//2
-void stop_elevator_at_floor();
+//oppdaterer position til between-statsene
+void update_elevator_position_between_floors();
 
-//3
+//2 returnerer 1 hvis vi skal stoppe på etasjen
+int stop_elevator_at_floor();
+
+//3 for når vi har stått stille og skal bevege oss igjen. skal vi da opp eller ned?
 void choose_motor_direction();
 
 #endif //STATE_MACHINE
