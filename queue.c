@@ -96,14 +96,29 @@ void remove_order_at_floor_number(int floor){
     }
 }
 
-//returnerer buttoncommand hvis i gyldig etasje
-int button_command_at_floor(elevator_position position);
+//returnerer 1 hvis det er innsideknapp som er trykket inn i etg, trengs i stop_elevator_at_floor!!!
+int button_inside_at_floor(elevator_position position){
+    if (queue_matrix[position][HARDWARE_ORDER_INSIDE]){
+        return 1;
+    }
+    return 0;
+}
 
-//returnerer button_call_down hvis i gyldig etasje
-int button_down_at_floor(elevator_position position);
+//returnerer b1 hvis det er buttondown som er trykket inn i etg
+int button_down_at_floor(elevator_position position){
+    if (queue_matrix[position][HARDWARE_ORDER_DOWN]){
+        return 1;
+    }
+    return 0;
+}
 
 //returnerer button_call_up hvis i gyldig etasje
-int button_up_at_floor(elevator_position position);
+int button_up_at_floor(elevator_position position){
+    if (queue_matrix[position][HARDWARE_ORDER_UP]){
+        return 1;
+    }
+    return 0;
+}
 
 elevator_position get_position(){
     return position;
