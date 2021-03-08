@@ -49,10 +49,7 @@ void update_elevator_position_between_floors(){ //trenger at currentdirection ha
 
 
 int stop_elevator_at_floor(){ //sjekker hvilket floor vi er på og avgjør om vi skal stoppe eller fortsette å kjøre, returnerer 1 hvis stoppe
-        //1 hvis order inni på floor
         if (button_inside_at_floor(get_position())){
-            printf("%d", get_position());
-            printf("orderfunksjon");
             return 1;
         }
 
@@ -64,26 +61,19 @@ int stop_elevator_at_floor(){ //sjekker hvilket floor vi er på og avgjør om vi
             return 1;
         }
         
-        //1 hvis på vei ned og det skal noen ned eller hvis på vei opp og det skal noen opp
         if ((current_direction == HARDWARE_MOVEMENT_DOWN && button_down_at_floor(get_position()))
         || (current_direction == HARDWARE_MOVEMENT_UP && button_up_at_floor(get_position()))){
-            printf("orderfunksjon 1");
             return 1;
         }
         
-        //1 hvis det er tomt for orders under og vi er på vei ned (kan da begynne oppover, men må stoppe følast
         if (order_under_current_position(get_position()) == 0 && current_direction == HARDWARE_MOVEMENT_DOWN){
-            printf("orderfunksjon 2");
             return 1;
         }
-        //samme for opp
         
         if (order_over_current_position(get_position()) == 0 && current_direction == HARDWARE_MOVEMENT_UP){
-            printf("orderfunksjon 3");
             return 1;
         }
         
-        //topp og bunn stop
         if (current_direction == HARDWARE_MOVEMENT_UP && get_position() == fourth){
             return 1;
         }
@@ -91,7 +81,6 @@ int stop_elevator_at_floor(){ //sjekker hvilket floor vi er på og avgjør om vi
         if (current_direction == HARDWARE_MOVEMENT_DOWN && get_position() == first){
             return 1;
         }
-    //else det er ikke noen grunn til å stopp
     return 0;
 }
 
@@ -153,7 +142,7 @@ void choose_motor_direction(){
         printf("if 6");
         return;
     }
-// if ordes above pos - 3 kjør opp ellers kjør ned
+//kjøres hvis heis i en av in-between statesene for å sjekke etg fra og med den over heisposisjn for orders
     if(order_over_current_position(get_position()-3)){
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
@@ -169,7 +158,6 @@ void choose_motor_direction(){
 }
 
 
-//statemachine funksjon med switch
 void state_machine_switch_case(){
 
     iterate_and_update_queue();
@@ -210,7 +198,6 @@ void state_machine_switch_case(){
         printf("\n");
         printf("%d", get_position());
         if (hardware_read_stop_signal()){
-            //på etasje:
             if(get_position() > fourth){
                 now_state = STOP_BETWEEN_FLOORS;
                 break;
@@ -224,7 +211,7 @@ void state_machine_switch_case(){
         hardware_command_door_open(0);
         current_direction = HARDWARE_MOVEMENT_STOP;
         iterate_and_update_queue();
-        //bevegelse hvis kø eksisterer:
+        //iverksett bevegelse hvis kø eksisterer:
         if (queue_exists()){
             now_state = MOVING;
             break;
@@ -237,8 +224,10 @@ void state_machine_switch_case(){
         print_queue();
         choose_motor_direction();
         printf("moving");
-        if(get_position() <= third_fourth){
+        if(get_position() <= third_fourth){ //-----bør vel fjernes(?)------
+
             update_elevator_position_between_floors();
+
             //mens heisen er mellom etg, oppdateres det om heisen er i en etasje hele tiden
             while(1){
 
@@ -253,34 +242,17 @@ void state_machine_switch_case(){
                 if(is_at_floor()){
                     update_elevator_position_at_floor();
                 }
-
                 //update_elevator_position_between_floors();      
                 update_elevator_position_at_floor();
                 printf("MOVING");
                 printf("%d", get_position());
                 iterate_and_update_queue(); 
-                if(is_at_floor() && stop_elevator_at_floor()){ //hvis heisen skal stoppe i etg->open_door state
-                    printf("hei");
+                if(is_at_floor() && stop_elevator_at_floor()){ //hvis heisen skal stoppe i etg -> open_door state
                     now_state = OPEN_DOOR;
                     break;
                 }
 
             }
-            /*
-
-            if((is_at_floor() && get_position() > fourth) && last_direction != HARDWARE_MOVEMENT_STOP){ 
-                printf("problem");
-                printf("%d", get_position());
-                print_queue();
-                //update_elevator_position_at_floor();
-
-                if(stop_elevator_at_floor()){
-                    printf("hei");
-                    now_state = OPEN_DOOR;
-                    break;
-                }
-            }
-            */
         }
         break;
 
@@ -294,7 +266,7 @@ void state_machine_switch_case(){
         current_direction = HARDWARE_MOVEMENT_STOP;
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
         if(order_at_floor_number(get_position())){//trengs denne ifen?
-            remove_order_at_floor_number(get_position()); //tror 
+            remove_order_at_floor_number(get_position()); 
         }
         printf("open door");
         print_queue();
