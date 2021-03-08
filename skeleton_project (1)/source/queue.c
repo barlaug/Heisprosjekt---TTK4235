@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
-elevator_position position = first;
+elevator_position position;
 
 void init_queue(){
     for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
@@ -83,7 +83,7 @@ void delete_queue(){
 
 int order_at_floor_number(int floor){
         for (int j = 0; j < HARDWARE_NUMBER_OF_BUTTONS; ++j){
-            if (queue_matrix[floor][j]){
+            if (queue_matrix[floor][j] == 1){
                 return 1;
             }
         }
@@ -93,6 +93,9 @@ int order_at_floor_number(int floor){
 void remove_order_at_floor_number(int floor){
     for(int i = 0; i < HARDWARE_NUMBER_OF_BUTTONS; ++i){
         queue_matrix[floor][i] = 0;
+        hardware_command_order_light(floor, HARDWARE_ORDER_UP, 0);
+        hardware_command_order_light(floor, HARDWARE_ORDER_DOWN, 0);
+        hardware_command_order_light(floor, HARDWARE_ORDER_INSIDE, 0);
     }
 }
 
