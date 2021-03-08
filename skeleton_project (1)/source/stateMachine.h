@@ -2,12 +2,12 @@
 #define STATE_MACHINE
 
 #include "queue.h"
+#include "timer.h"
 
 /*funksjoner:
 1) endre heisens elevator_position når den treffer nye etasjer/er mellom etasjer
 2) stopp heis på etasje getposition() dersom order_at_floor_number(getposition()) er true
 3) req-handler (kanskje ha denne i egen fil) som, hvis motor i ro - heis stille, sjekker request og setter motorretning til opp/ned
-
 states:
 init: initialiserer hardware, queue, motordirection, og skrur på motor(?)
 idle/tomgang: set motor off, lukk dører, vent på request. kommer hit etter dør lukket på etg eller stop sluppet opp mellom etg, også etter init
@@ -42,5 +42,8 @@ int stop_elevator_at_floor();
 
 //3 for når vi har stått stille og skal bevege oss igjen. skal vi da opp eller ned?
 void choose_motor_direction();
+
+//Sjekker om heis er i gyldig etg
+int is_at_floor();
 
 #endif //STATE_MACHINE
