@@ -29,13 +29,22 @@ extern HardwareMovement previous_direction;
  */
 extern HardwareMovement current_direction;
 
-//statemachine funksjon med switch
-void fsm_state_machine();
 
-//oppdaterer position til floor, egen funksjon til de mellom
+/**
+    @brief Checks if the elevator receives a floor sensor signal/if the elevator is at a floor.
+    @return 1 If the elevator is at a floor.
+    @return 0 If the elevator is between two floors/not at a floor.
+*/
+int fsm_elevator_is_at_floor();
+
+/**
+    @brief Updates the position of the elevator when the elevator arrives at a new floor.
+*/
 void fsm_update_elevator_position_at_floor();
 
-//oppdaterer position til between-statsene
+/**
+    @brief Updates the position of the elevator when the elevator is between two floors.
+*/
 void fsm_update_elevator_position_between_floors();
 
 //2 returnerer 1 hvis vi skal stoppe på etasjen
@@ -46,7 +55,7 @@ int fsm_stop_elevator_at_floor();
 //hvis orders under og forrige dir = ned fortsett ned (samme som over)
 void fsm_choose_motor_direction();
 
-//Sjekker om heis er i gyldig etg
-int fsm_elevator_is_at_floor();
+//statemachine funksjon med switch
+void fsm_state_machine();
 
 #endif //FSM_H

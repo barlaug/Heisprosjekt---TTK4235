@@ -10,7 +10,7 @@
 */
 
 /**
-    @brief Enum containing the different posistions of the elevator.
+    @brief Enum containing the different positions of the elevator.
  */
 typedef enum {
     first = 0,
