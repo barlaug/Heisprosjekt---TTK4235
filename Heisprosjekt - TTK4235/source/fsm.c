@@ -65,10 +65,10 @@ int fsm_stop_elevator_at_floor(){
     || (current_direction == HARDWARE_MOVEMENT_UP && queue_button_up_at_floor(queue_get_position()))){
         return 1;
     }
-    if (queue_order_under_current_position(queue_get_position()) == 0 && current_direction == HARDWARE_MOVEMENT_DOWN){
+    if (queue_order_below_current_position(queue_get_position()) == 0 && current_direction == HARDWARE_MOVEMENT_DOWN){
         return 1;
     }
-    if (queue_order_over_current_position(queue_get_position()) == 0 && current_direction == HARDWARE_MOVEMENT_UP){
+    if (queue_order_above_current_position(queue_get_position()) == 0 && current_direction == HARDWARE_MOVEMENT_UP){
         return 1;
     }
     if (current_direction == HARDWARE_MOVEMENT_UP && queue_get_position() == fourth){
@@ -85,45 +85,45 @@ void fsm_choose_motor_direction(){
     if (current_direction != HARDWARE_MOVEMENT_STOP){
         return;
     }
-    if (previous_direction == HARDWARE_MOVEMENT_UP && queue_order_over_current_position(queue_get_position())){
+    if (previous_direction == HARDWARE_MOVEMENT_UP && queue_order_above_current_position(queue_get_position())){
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;
         return;
 
     }
-    if ((previous_direction == HARDWARE_MOVEMENT_DOWN && queue_get_position() == first) && queue_order_over_current_position(queue_get_position())){
+    if ((previous_direction == HARDWARE_MOVEMENT_DOWN && queue_get_position() == first) && queue_order_above_current_position(queue_get_position())){
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;
         return;
     }
-    if (previous_direction == HARDWARE_MOVEMENT_DOWN && queue_order_under_current_position(queue_get_position())){
+    if (previous_direction == HARDWARE_MOVEMENT_DOWN && queue_order_below_current_position(queue_get_position())){
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
         current_direction = HARDWARE_MOVEMENT_DOWN;
         previous_direction = HARDWARE_MOVEMENT_DOWN;
         return;
 
     }
-    if ((previous_direction == HARDWARE_MOVEMENT_UP && queue_get_position() == fourth) && queue_order_under_current_position(queue_get_position())){
+    if ((previous_direction == HARDWARE_MOVEMENT_UP && queue_get_position() == fourth) && queue_order_below_current_position(queue_get_position())){
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
         current_direction = HARDWARE_MOVEMENT_DOWN;
         previous_direction = HARDWARE_MOVEMENT_DOWN;
         return;
     }
-    if (queue_order_under_current_position(queue_get_position()) && queue_get_position()<= fourth){
+    if (queue_order_below_current_position(queue_get_position()) && queue_get_position()<= fourth){
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
         current_direction = HARDWARE_MOVEMENT_DOWN;
         previous_direction = HARDWARE_MOVEMENT_DOWN;
         return;
     }
-    if(queue_order_over_current_position(queue_get_position()) && queue_get_position()<= fourth){
+    if(queue_order_above_current_position(queue_get_position()) && queue_get_position()<= fourth){
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;
         return;
     }
-    if(queue_order_over_current_position(queue_get_position()-3)){
+    if(queue_order_above_current_position(queue_get_position()-3)){
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;

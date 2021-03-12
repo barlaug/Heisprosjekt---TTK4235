@@ -47,15 +47,22 @@ void fsm_update_elevator_position_at_floor();
 */
 void fsm_update_elevator_position_between_floors();
 
-//2 returnerer 1 hvis vi skal stoppe på etasjen
+/**
+    @brief Checks orders, elevator position and direction, and decides whether to stop or not at the floor the elevator is passing by.
+    @return 1 If the elevator should stop.
+    @return 0 If the elevator should keep moving.
+*/
 int fsm_stop_elevator_at_floor();
 
-//3 for når vi har stått stille og skal bevege oss igjen. skal vi da opp eller ned?    //hvis allerede i bevegelse (!stop) -> return
-//hvis forrige dir = opp og orders over, fortsett oppovover og sett motordir og current dir til opp (så return)
-//hvis orders under og forrige dir = ned fortsett ned (samme som over)
+
+/**
+    @brief Checks orders, elevator position and direction, and chooses motordirection up/down when the elevator goes from still to moving.
+*/
 void fsm_choose_motor_direction();
 
-//statemachine funksjon med switch
+/**
+    @brief The finite state machine switch-case function. Sets and changes the elevator state.
+*/
 void fsm_state_machine();
 
 #endif //FSM_H

@@ -32,40 +32,92 @@ extern int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
  */
 extern elevator_position position; 
 
+/**
+    @brief Initializes the queue matrix.
+*/
 void queue_init_queue();
 
-//1 hvis elementer i kø, 0 hvis ikke
+/**
+    @brief Checks if the queue contains order(s).
+    @return 1 If order(s) in queue.
+    @return 0 If no orders in queue.
+*/
 int queue_queue_exists();
 
-//oppdaterer kø på korresponderende knapp hvis trykket inn, setter lys
+/**
+    @brief Checks the hardware for orders and inserts them in the queue. Sets order-lights in hardware. 
+*/
 void queue_iterate_and_update_queue();
 
-//1 hvis elementer i kø over, 0 hvis ikke 
-int queue_order_over_current_position(elevator_position position);
+/**
+    @brief Checks the queue for orders above the elevators current position.
+    @param position Current position of the elevator.
+    @return 1 If there exists orders above current elevator position.
+    @return 0 If there are no orders above current elevator position.
+*/
+int queue_order_above_current_position(elevator_position position);
 
-//1 hvis elementer i kø under, 0 hvis ikke
-int queue_order_under_current_position(elevator_position position);
+/**
+    @brief Checks the queue for orders below the elevators current position.
+    @param position Current position of the elevator.
+    @return 1 If there exists orders below current elevator position.
+    @return 0 If there are no orders below current elevator position.
+*/
+int queue_order_below_current_position(elevator_position position);
 
-//Slett hele køen
+/**
+    @brief Removes all orders from queue.
+*/
 void queue_delete_queue();
 
-//true hvis bestilling på input-etg
+/**
+    @brief Checks if there exists orders at input floor.
+    @param floor Floor to check for orders.
+    @return 1 If there exists orders at input floor.
+    @return 0 If there are no orders at input floor.
+*/
 int queue_order_at_floor_number(int floor);
 
-//fjerner bestilling på input-etg
+/**
+    @brief Removes all orders at the input floor from the queue.
+    @param floor The floor which should be cleared for orders in the queue. 
+*/
 void queue_remove_order_at_floor_number(int floor);
 
-//returnerer buttoncommand hvis i gyldig etasje
+/**
+    @brief Checks if the button inside of the elevator is pressed at the input position.
+    @param position Current position of the elevator.
+    @return 1 If the inside-button i pressed.
+    @return 0 If the inside-button is not pressed.
+*/
 int queue_button_inside_at_floor(elevator_position position);
 
-//returnerer button_call_down hvis i gyldig etasje
+/**
+    @brief Checks if the down-button outside of the elevator is pressed at the input position.
+    @param position Current position of the elevator.
+    @return 1 If the down-button outside of the elevator is pressed.
+    @return 0 If the down-button outside of the elevator is not pressed.
+*/
 int queue_button_down_at_floor(elevator_position position);
 
-//returnerer button_call_up hvis i gyldig etasje
+/**
+    @brief Checks if the up-button outside of the elevator is pressed at the input position.
+    @param position Current position of the elevator.
+    @return 1 If the up-button outside of the elevator is pressed.
+    @return 0 If the up-button outside of the elevator is not pressed.
+*/
 int queue_button_up_at_floor(elevator_position position);
 
+/**
+    @brief Get function for the elevators position.
+    @return The current position of the elevator.
+*/
 elevator_position queue_get_position();
 
+/**
+    @brief Set function for the elevators position.
+    @param pos The position elevator position is changed to.
+*/
 void queue_set_position(elevator_position pos);
 
 #endif //QUEUE_H

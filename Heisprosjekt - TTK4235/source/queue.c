@@ -47,7 +47,7 @@ void queue_iterate_and_update_queue(){
 }
 
 
-int queue_order_over_current_position(elevator_position position){
+int queue_order_above_current_position(elevator_position position){
     for (int i = position; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
         if (queue_order_at_floor_number(i)){
             return 1;
@@ -57,7 +57,7 @@ int queue_order_over_current_position(elevator_position position){
 }
 
 
-int queue_order_under_current_position(elevator_position position){
+int queue_order_below_current_position(elevator_position position){
     for (int i = 0; i < position; ++i){
         if (queue_order_at_floor_number(i)){
             return 1;

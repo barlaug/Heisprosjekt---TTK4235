@@ -10,6 +10,9 @@
 	@brief Main file.
 */
 
+/**
+    @brief Main function of the program. Runs the state machine.
+*/
 int main(){    
     int error = hardware_init();
     if(error != 0){
