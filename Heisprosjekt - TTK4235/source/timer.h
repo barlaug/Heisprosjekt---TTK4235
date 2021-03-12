@@ -1,22 +1,20 @@
-#ifndef TIMER
-#define TIMER
+#ifndef TIMER_H
+#define TIMER_H
 
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 
-//static time_t timer_counter = 0; //tellevariabelen 
+/**
+	@file
+	@brief .h-file for the timer system.
+*/
 
 //starter en timer
-void start_timer();
+void timer_start_timer();
 
 //returnerer 1 når timer har stått i seconds sekunder
-int timer_has_expried(double seconds);
+int timer_timer_has_expried(double seconds);
 
 
-//resetter timeren
-void reset_timer();
-
- 
-
-#endif //TIMER
+#endif //TIMER_H
