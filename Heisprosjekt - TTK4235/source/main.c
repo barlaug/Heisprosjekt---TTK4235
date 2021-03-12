@@ -3,7 +3,12 @@
 #include <signal.h>
 #include "driver/hardware.h"
 #include "queue.h"
-#include "stateMachine.h"
+#include "fsm.h"
+
+/**
+	@file
+	@brief Main file.
+*/
 
 int main(){    
     int error = hardware_init();
@@ -11,24 +16,10 @@ int main(){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
-    //hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    ///*
+
     now_state = INIT;
-
     while(1){
-
-        state_machine_switch_case();
+        fsm_state_machine();
     }
-    ///*/
-
-    //testing:
-    //init_queue();
-    
-    //print_queue();
-    /*
-    printf("%d",queue_exists());
-    delete_queue();
-    printf("%d",get_position());
-    */
     return 0;
 }
