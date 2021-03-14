@@ -1,0 +1,8 @@
+<map id="source/timer.h" name="source/timer.h">
+<area shape="rect" id="node2" href="$fsm_8h.html" title=".h&#45;file for setting up the elevators finite state machine (fsm). " alt="" coords="139,80,237,107"/>
+<area shape="rect" id="node7" href="$timer_8c.html" title=".c&#45;file for the timer system. " alt="" coords="262,80,367,107"/>
+<area shape="rect" id="node3" href="$fsm_8c.html" title=".c&#45;file for setting up the elevators finite state machine (fsm) " alt="" coords="5,155,104,181"/>
+<area shape="rect" id="node4" href="$queue_8h.html" title=".h&#45;file for handling orders and managing the elevator queue. " alt="" coords="179,155,290,181"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Main file. " alt="" coords="89,229,193,256"/>
+<area shape="rect" id="node6" href="$queue_8c.html" title=".c&#45;file that contains all the logic for queue management in the elevator queue. " alt="" coords="218,229,329,256"/>
+</map>

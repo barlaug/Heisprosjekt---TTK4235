@@ -1,0 +1,116 @@
+\hypertarget{fsm_8h}{}\section{source/fsm.h File Reference}
+\label{fsm_8h}\index{source/fsm.\+h@{source/fsm.\+h}}
+
+
+.h-\/file for setting up the elevators finite state machine (fsm).  
+
+
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\newline
+Include dependency graph for fsm.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fsm_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{fsm_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{fsm_8h_acd367487f07fca9e254fc824e3e611a8}\label{fsm_8h_acd367487f07fca9e254fc824e3e611a8}} 
+enum \hyperlink{fsm_8h_acd367487f07fca9e254fc824e3e611a8}{elevator\+\_\+state} \{ \newline
+{\bfseries I\+N\+IT}, 
+{\bfseries I\+D\+LE}, 
+{\bfseries M\+O\+V\+I\+NG}, 
+{\bfseries O\+P\+E\+N\+\_\+\+D\+O\+OR}, 
+\newline
+{\bfseries S\+T\+O\+P\+\_\+\+B\+E\+T\+W\+E\+E\+N\+\_\+\+F\+L\+O\+O\+RS}, 
+{\bfseries S\+T\+O\+P\+\_\+\+A\+T\+\_\+\+F\+L\+O\+OR}
+ \}\begin{DoxyCompactList}\small\item\em Enum containing the different states of the elevator in the fsm. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fsm_8h_a573c28869d86e2ee8eb3f7a28a7054e3}{fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor} ()
+\begin{DoxyCompactList}\small\item\em Checks if the elevator receives a floor sensor signal/if the elevator is at a floor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{fsm_8h_a8ee1eda139065a11895e51ca67038ac9}\label{fsm_8h_a8ee1eda139065a11895e51ca67038ac9}} 
+void \hyperlink{fsm_8h_a8ee1eda139065a11895e51ca67038ac9}{fsm\+\_\+update\+\_\+elevator\+\_\+position\+\_\+at\+\_\+floor} ()
+\begin{DoxyCompactList}\small\item\em Updates the position of the elevator when the elevator arrives at a new floor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{fsm_8h_ace237751f33298751285a2a4a5c60d1d}\label{fsm_8h_ace237751f33298751285a2a4a5c60d1d}} 
+void \hyperlink{fsm_8h_ace237751f33298751285a2a4a5c60d1d}{fsm\+\_\+update\+\_\+elevator\+\_\+position\+\_\+between\+\_\+floors} ()
+\begin{DoxyCompactList}\small\item\em Updates the position of the elevator when the elevator is between two floors. \end{DoxyCompactList}\item 
+int \hyperlink{fsm_8h_a97ef7bccac097b8a3f00b84aa346243e}{fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor} ()
+\begin{DoxyCompactList}\small\item\em Checks orders, elevator position and direction, and decides whether to stop or not at the floor the elevator is passing by. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{fsm_8h_abfbebabfd006bb1ad394c58906a5ebb4}\label{fsm_8h_abfbebabfd006bb1ad394c58906a5ebb4}} 
+void \hyperlink{fsm_8h_abfbebabfd006bb1ad394c58906a5ebb4}{fsm\+\_\+choose\+\_\+motor\+\_\+direction} ()
+\begin{DoxyCompactList}\small\item\em Checks orders, elevator position and direction, and chooses motordirection up/down when the elevator goes from still to moving. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{fsm_8h_a05121e3cfc372d76f6052c0d4c032090}\label{fsm_8h_a05121e3cfc372d76f6052c0d4c032090}} 
+void \hyperlink{fsm_8h_a05121e3cfc372d76f6052c0d4c032090}{fsm\+\_\+state\+\_\+machine} ()
+\begin{DoxyCompactList}\small\item\em The finite state machine switch-\/case function. Sets and changes the elevator state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{fsm_8h_ac1f47f38d29870d6d5908c517eda6475}\label{fsm_8h_ac1f47f38d29870d6d5908c517eda6475}} 
+\hyperlink{fsm_8h_acd367487f07fca9e254fc824e3e611a8}{elevator\+\_\+state} \hyperlink{fsm_8h_ac1f47f38d29870d6d5908c517eda6475}{now\+\_\+state}
+\begin{DoxyCompactList}\small\item\em Variable for storing the current state of the elevator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{fsm_8h_ab1cb5a3b17a40ee0f3ca79db5625b740}\label{fsm_8h_ab1cb5a3b17a40ee0f3ca79db5625b740}} 
+Hardware\+Movement \hyperlink{fsm_8h_ab1cb5a3b17a40ee0f3ca79db5625b740}{previous\+\_\+direction}
+\begin{DoxyCompactList}\small\item\em Variable for storing the previous direction the elevator was moving in. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{fsm_8h_a1046f1be4602c42ef4fe8de2ed351c66}\label{fsm_8h_a1046f1be4602c42ef4fe8de2ed351c66}} 
+Hardware\+Movement \hyperlink{fsm_8h_a1046f1be4602c42ef4fe8de2ed351c66}{current\+\_\+direction}
+\begin{DoxyCompactList}\small\item\em Variable for storing the direction the elevator is currently moving in. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+.h-\/file for setting up the elevators finite state machine (fsm). 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fsm_8h_a573c28869d86e2ee8eb3f7a28a7054e3}\label{fsm_8h_a573c28869d86e2ee8eb3f7a28a7054e3}} 
+\index{fsm.\+h@{fsm.\+h}!fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor@{fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor}}
+\index{fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor@{fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor}!fsm.\+h@{fsm.\+h}}
+\subsubsection{\texorpdfstring{fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor()}{fsm\_elevator\_is\_at\_floor()}}
+{\footnotesize\ttfamily int fsm\+\_\+elevator\+\_\+is\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the elevator receives a floor sensor signal/if the elevator is at a floor. 
+
+\begin{DoxyReturn}{Returns}
+1 If the elevator is at a floor. 
+
+0 If the elevator is between two floors/not at a floor. 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file fsm.\+c.
+
+\mbox{\Hypertarget{fsm_8h_a97ef7bccac097b8a3f00b84aa346243e}\label{fsm_8h_a97ef7bccac097b8a3f00b84aa346243e}} 
+\index{fsm.\+h@{fsm.\+h}!fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor@{fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor}}
+\index{fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor@{fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor}!fsm.\+h@{fsm.\+h}}
+\subsubsection{\texorpdfstring{fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor()}{fsm\_stop\_elevator\_at\_floor()}}
+{\footnotesize\ttfamily int fsm\+\_\+stop\+\_\+elevator\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks orders, elevator position and direction, and decides whether to stop or not at the floor the elevator is passing by. 
+
+\begin{DoxyReturn}{Returns}
+1 If the elevator should stop. 
+
+0 If the elevator should keep moving. 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file fsm.\+c.
+

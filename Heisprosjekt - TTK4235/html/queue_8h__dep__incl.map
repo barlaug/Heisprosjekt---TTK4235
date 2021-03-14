@@ -1,0 +1,6 @@
+<map id="source/queue.h" name="source/queue.h">
+<area shape="rect" id="node2" href="$fsm_8h.html" title=".h&#45;file for setting up the elevators finite state machine (fsm). " alt="" coords="44,80,143,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Main file. " alt="" coords="128,155,232,181"/>
+<area shape="rect" id="node5" href="$queue_8c.html" title=".c&#45;file that contains all the logic for queue management in the elevator queue. " alt="" coords="218,80,329,107"/>
+<area shape="rect" id="node3" href="$fsm_8c.html" title=".c&#45;file for setting up the elevators finite state machine (fsm) " alt="" coords="5,155,104,181"/>
+</map>
