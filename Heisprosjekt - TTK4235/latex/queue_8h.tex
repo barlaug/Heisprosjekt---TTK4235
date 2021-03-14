@@ -1,0 +1,308 @@
+\hypertarget{queue_8h}{}\section{source/queue.h File Reference}
+\label{queue_8h}\index{source/queue.\+h@{source/queue.\+h}}
+
+
+.h-\/file for handling orders and managing the elevator queue.  
+
+
+{\ttfamily \#include \char`\"{}driver/hardware.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}driver/channels.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fsm.\+h\char`\"{}}\newline
+Include dependency graph for queue.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{queue_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{queue_8h_a3f7930823335655eba2f898c739671d0}\label{queue_8h_a3f7930823335655eba2f898c739671d0}} 
+enum \hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \{ \newline
+{\bfseries first} = 0, 
+{\bfseries second} = 1, 
+{\bfseries third} = 2, 
+{\bfseries fourth} = 3, 
+\newline
+{\bfseries first\+\_\+second} = 4, 
+{\bfseries second\+\_\+third} = 5, 
+{\bfseries third\+\_\+fourth} = 6
+ \}\begin{DoxyCompactList}\small\item\em Enum containing the different positions of the elevator. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{queue_8h_a9d79c1ab7ae2f8d03fa045eae25f6b2a}\label{queue_8h_a9d79c1ab7ae2f8d03fa045eae25f6b2a}} 
+void \hyperlink{queue_8h_a9d79c1ab7ae2f8d03fa045eae25f6b2a}{queue\+\_\+init\+\_\+queue} ()
+\begin{DoxyCompactList}\small\item\em Initializes the queue matrix. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_af2004759a602f00d51d7a52b842ee27e}{queue\+\_\+queue\+\_\+exists} ()
+\begin{DoxyCompactList}\small\item\em Checks if the queue contains order(s). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{queue_8h_a3e5f178d15a689153f9d101a5e15b905}\label{queue_8h_a3e5f178d15a689153f9d101a5e15b905}} 
+void \hyperlink{queue_8h_a3e5f178d15a689153f9d101a5e15b905}{queue\+\_\+iterate\+\_\+and\+\_\+update\+\_\+queue} ()
+\begin{DoxyCompactList}\small\item\em Checks the hardware for orders and inserts them in the queue. Sets order-\/lights in hardware. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_a66cc5e1def51a8612fe8b6299c629ec3}{queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position} (\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}{position})
+\begin{DoxyCompactList}\small\item\em Checks the queue for orders above the elevators current position. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_adec8b6fe8715213f3a8d98d6e7d2db14}{queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position} (\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}{position})
+\begin{DoxyCompactList}\small\item\em Checks the queue for orders below the elevators current position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{queue_8h_a33400e4a7ea771bfe210a687747929ff}\label{queue_8h_a33400e4a7ea771bfe210a687747929ff}} 
+void \hyperlink{queue_8h_a33400e4a7ea771bfe210a687747929ff}{queue\+\_\+delete\+\_\+queue} ()
+\begin{DoxyCompactList}\small\item\em Removes all orders from queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_a5fcc64f8bb2774d86bfc8d7d1824d1ce}{queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number} (int floor)
+\begin{DoxyCompactList}\small\item\em Checks if there exists orders at input floor. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_a62cd08b2aa5bdbff68e2c1d02e10f7a7}{queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number} (int floor)
+\begin{DoxyCompactList}\small\item\em Removes all orders at the input floor from the queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_a3bc770d75f83b456f0e9a3137bbc6e77}{queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor} (\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}{position})
+\begin{DoxyCompactList}\small\item\em Checks if the button inside of the elevator is pressed at the input position. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_af51d473de7a1809da941f124fa724dcf}{queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor} (\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}{position})
+\begin{DoxyCompactList}\small\item\em Checks if the down-\/button outside of the elevator is pressed at the input position. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_a14fc1d81de02daba4420f0b99bd3abbe}{queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor} (\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}{position})
+\begin{DoxyCompactList}\small\item\em Checks if the up-\/button outside of the elevator is pressed at the input position. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_aa216eca86460fe50f3a10d176365813c}{queue\+\_\+get\+\_\+position} ()
+\begin{DoxyCompactList}\small\item\em Get function for the elevators position. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_af44da6d1a5cb07cbe09f9b9886d24c2a}{queue\+\_\+set\+\_\+position} (\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} pos)
+\begin{DoxyCompactList}\small\item\em Set function for the elevators position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{queue_8h_a627865f7ba022b3ad9979791fc86a85f}\label{queue_8h_a627865f7ba022b3ad9979791fc86a85f}} 
+int \hyperlink{queue_8h_a627865f7ba022b3ad9979791fc86a85f}{queue\+\_\+matrix} \mbox{[}H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+F\+L\+O\+O\+RS\mbox{]}\mbox{[}H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+B\+U\+T\+T\+O\+NS\mbox{]}
+\begin{DoxyCompactList}\small\item\em 4x3 matrix containing all current orders in the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}\label{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}} 
+\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} \hyperlink{queue_8h_a64aa88f4f8e0b2dc9d03a2177fb4241e}{position}
+\begin{DoxyCompactList}\small\item\em Variable for storing the posistion of the elevator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+.h-\/file for handling orders and managing the elevator queue. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{queue_8h_af51d473de7a1809da941f124fa724dcf}\label{queue_8h_af51d473de7a1809da941f124fa724dcf}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor@{queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor}}
+\index{queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor@{queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor()}{queue\_button\_down\_at\_floor()}}
+{\footnotesize\ttfamily int queue\+\_\+button\+\_\+down\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position}}]{position }\end{DoxyParamCaption})}
+
+
+
+Checks if the down-\/button outside of the elevator is pressed at the input position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Current position of the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 If the down-\/button outside of the elevator is pressed. 
+
+0 If the down-\/button outside of the elevator is not pressed. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a3bc770d75f83b456f0e9a3137bbc6e77}\label{queue_8h_a3bc770d75f83b456f0e9a3137bbc6e77}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor@{queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor}}
+\index{queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor@{queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor()}{queue\_button\_inside\_at\_floor()}}
+{\footnotesize\ttfamily int queue\+\_\+button\+\_\+inside\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position}}]{position }\end{DoxyParamCaption})}
+
+
+
+Checks if the button inside of the elevator is pressed at the input position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Current position of the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 If the inside-\/button i pressed. 
+
+0 If the inside-\/button is not pressed. 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a14fc1d81de02daba4420f0b99bd3abbe}\label{queue_8h_a14fc1d81de02daba4420f0b99bd3abbe}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor@{queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor}}
+\index{queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor@{queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor()}{queue\_button\_up\_at\_floor()}}
+{\footnotesize\ttfamily int queue\+\_\+button\+\_\+up\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position}}]{position }\end{DoxyParamCaption})}
+
+
+
+Checks if the up-\/button outside of the elevator is pressed at the input position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Current position of the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 If the up-\/button outside of the elevator is pressed. 
+
+0 If the up-\/button outside of the elevator is not pressed. 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_aa216eca86460fe50f3a10d176365813c}\label{queue_8h_aa216eca86460fe50f3a10d176365813c}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+get\+\_\+position@{queue\+\_\+get\+\_\+position}}
+\index{queue\+\_\+get\+\_\+position@{queue\+\_\+get\+\_\+position}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+get\+\_\+position()}{queue\_get\_position()}}
+{\footnotesize\ttfamily \hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position} queue\+\_\+get\+\_\+position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get function for the elevators position. 
+
+\begin{DoxyReturn}{Returns}
+The current position of the elevator. 
+\end{DoxyReturn}
+
+
+Definition at line 124 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a66cc5e1def51a8612fe8b6299c629ec3}\label{queue_8h_a66cc5e1def51a8612fe8b6299c629ec3}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position@{queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position}}
+\index{queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position@{queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position()}{queue\_order\_above\_current\_position()}}
+{\footnotesize\ttfamily int queue\+\_\+order\+\_\+above\+\_\+current\+\_\+position (\begin{DoxyParamCaption}\item[{\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position}}]{position }\end{DoxyParamCaption})}
+
+
+
+Checks the queue for orders above the elevators current position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Current position of the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 If there exists orders above current elevator position. 
+
+0 If there are no orders above current elevator position. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a5fcc64f8bb2774d86bfc8d7d1824d1ce}\label{queue_8h_a5fcc64f8bb2774d86bfc8d7d1824d1ce}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number@{queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number}}
+\index{queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number@{queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number()}{queue\_order\_at\_floor\_number()}}
+{\footnotesize\ttfamily int queue\+\_\+order\+\_\+at\+\_\+floor\+\_\+number (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Checks if there exists orders at input floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Floor to check for orders. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 If there exists orders at input floor. 
+
+0 If there are no orders at input floor. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_adec8b6fe8715213f3a8d98d6e7d2db14}\label{queue_8h_adec8b6fe8715213f3a8d98d6e7d2db14}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position@{queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position}}
+\index{queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position@{queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position()}{queue\_order\_below\_current\_position()}}
+{\footnotesize\ttfamily int queue\+\_\+order\+\_\+below\+\_\+current\+\_\+position (\begin{DoxyParamCaption}\item[{\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position}}]{position }\end{DoxyParamCaption})}
+
+
+
+Checks the queue for orders below the elevators current position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Current position of the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 If there exists orders below current elevator position. 
+
+0 If there are no orders below current elevator position. 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_af2004759a602f00d51d7a52b842ee27e}\label{queue_8h_af2004759a602f00d51d7a52b842ee27e}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+queue\+\_\+exists@{queue\+\_\+queue\+\_\+exists}}
+\index{queue\+\_\+queue\+\_\+exists@{queue\+\_\+queue\+\_\+exists}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+queue\+\_\+exists()}{queue\_queue\_exists()}}
+{\footnotesize\ttfamily int queue\+\_\+queue\+\_\+exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the queue contains order(s). 
+
+\begin{DoxyReturn}{Returns}
+1 If order(s) in queue. 
+
+0 If no orders in queue. 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a62cd08b2aa5bdbff68e2c1d02e10f7a7}\label{queue_8h_a62cd08b2aa5bdbff68e2c1d02e10f7a7}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number@{queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number}}
+\index{queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number@{queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number()}{queue\_remove\_order\_at\_floor\_number()}}
+{\footnotesize\ttfamily void queue\+\_\+remove\+\_\+order\+\_\+at\+\_\+floor\+\_\+number (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Removes all orders at the input floor from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & The floor which should be cleared for orders in the queue. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_af44da6d1a5cb07cbe09f9b9886d24c2a}\label{queue_8h_af44da6d1a5cb07cbe09f9b9886d24c2a}} 
+\index{queue.\+h@{queue.\+h}!queue\+\_\+set\+\_\+position@{queue\+\_\+set\+\_\+position}}
+\index{queue\+\_\+set\+\_\+position@{queue\+\_\+set\+\_\+position}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+set\+\_\+position()}{queue\_set\_position()}}
+{\footnotesize\ttfamily void queue\+\_\+set\+\_\+position (\begin{DoxyParamCaption}\item[{\hyperlink{queue_8h_a3f7930823335655eba2f898c739671d0}{elevator\+\_\+position}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Set function for the elevators position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position elevator position is changed to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 129 of file queue.\+c.
+

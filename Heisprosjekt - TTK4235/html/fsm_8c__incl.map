@@ -1,0 +1,5 @@
+<map id="source/fsm.c" name="source/fsm.c">
+<area shape="rect" id="node2" href="$fsm_8h.html" title=".h&#45;file for setting up the elevators finite state machine (fsm). " alt="" coords="246,80,301,107"/>
+<area shape="rect" id="node3" href="$queue_8h.html" title=".h&#45;file for handling orders and managing the elevator queue. " alt="" coords="266,155,334,181"/>
+<area shape="rect" id="node6" href="$timer_8h.html" title=".h&#45;file for the timer system. " alt="" coords="97,155,159,181"/>
+</map>

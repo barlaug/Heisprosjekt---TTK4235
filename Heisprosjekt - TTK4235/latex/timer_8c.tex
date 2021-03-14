@@ -1,0 +1,57 @@
+\hypertarget{timer_8c}{}\section{source/timer.c File Reference}
+\label{timer_8c}\index{source/timer.\+c@{source/timer.\+c}}
+
+
+.c-\/file for the timer system.  
+
+
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for timer.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{timer_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timer_8c_a232289df78f39fca1fdfc992176a5d75}\label{timer_8c_a232289df78f39fca1fdfc992176a5d75}} 
+void \hyperlink{timer_8c_a232289df78f39fca1fdfc992176a5d75}{timer\+\_\+start\+\_\+timer} ()
+\begin{DoxyCompactList}\small\item\em Starts a timer. \end{DoxyCompactList}\item 
+int \hyperlink{timer_8c_a68e0e1d10f743a641770ac85ec5abe99}{timer\+\_\+timer\+\_\+has\+\_\+expried} (double seconds)
+\begin{DoxyCompactList}\small\item\em Checks for how long the timer\+\_\+counter variable has been running for. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+.c-\/file for the timer system. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{timer_8c_a68e0e1d10f743a641770ac85ec5abe99}\label{timer_8c_a68e0e1d10f743a641770ac85ec5abe99}} 
+\index{timer.\+c@{timer.\+c}!timer\+\_\+timer\+\_\+has\+\_\+expried@{timer\+\_\+timer\+\_\+has\+\_\+expried}}
+\index{timer\+\_\+timer\+\_\+has\+\_\+expried@{timer\+\_\+timer\+\_\+has\+\_\+expried}!timer.\+c@{timer.\+c}}
+\subsubsection{\texorpdfstring{timer\+\_\+timer\+\_\+has\+\_\+expried()}{timer\_timer\_has\_expried()}}
+{\footnotesize\ttfamily int timer\+\_\+timer\+\_\+has\+\_\+expried (\begin{DoxyParamCaption}\item[{double}]{seconds }\end{DoxyParamCaption})}
+
+
+
+Checks for how long the timer\+\_\+counter variable has been running for. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seconds} & The time you want to let go by before the function returns True. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it has gone by more than or equal to seconds seconds since the timer started in \hyperlink{timer_8h_a232289df78f39fca1fdfc992176a5d75}{timer\+\_\+start\+\_\+timer()}. 
+
+0 if it has gone by less than seconds seconds since the timer started in \hyperlink{timer_8h_a232289df78f39fca1fdfc992176a5d75}{timer\+\_\+start\+\_\+timer()}. 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file timer.\+c.
+
