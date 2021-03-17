@@ -233,7 +233,7 @@ void fsm_state_machine(){
                 queue_iterate_and_update_queue(); //the queue has to be able to handle incoming orders while the obstruction signal is high
             }
             hardware_command_door_open(1);
-            queue_iterate_and_update_queue(); //må kunne ta inn bestillinger mens døra er åpen i etg
+            queue_iterate_and_update_queue(); //the queue has to be able to handle incoming orders while the door open signal is high
         }
 
         queue_remove_order_at_floor_number(queue_get_position());
