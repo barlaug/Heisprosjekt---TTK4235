@@ -8,7 +8,7 @@
 */
 
 
-int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS];
+int queue_matrix[HARDWARE_NUMBER_OF_FLOORS][HARDWARE_NUMBER_OF_BUTTONS]; //4x3
 elevator_position position;
 
 
@@ -22,7 +22,7 @@ void queue_init_queue(){
 
 
 int queue_queue_exists(){
-    int queue_exists = 0;
+    int queue_exists = 0; 
     for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
         for (int j = 0; j < HARDWARE_NUMBER_OF_BUTTONS; ++j){
             if (queue_matrix[i][j]){
@@ -68,7 +68,7 @@ int queue_order_below_current_position(elevator_position position){
 
 
 void queue_delete_queue(){
-    queue_init_queue();
+    queue_init_queue(); //overwrites the queue
     for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; ++i){
         hardware_command_order_light(i, HARDWARE_ORDER_UP, 0);
         hardware_command_order_light(i, HARDWARE_ORDER_DOWN, 0);
@@ -97,6 +97,7 @@ void queue_remove_order_at_floor_number(int floor){
 }
 
 
+//in the next 3 funcs: ifs for readability.
 int queue_button_inside_at_floor(elevator_position position){
     if (queue_matrix[position][HARDWARE_ORDER_INSIDE]){
         return 1;
