@@ -90,7 +90,6 @@ void fsm_choose_motor_direction(){
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;
         return;
-
     }
     if ((previous_direction == HARDWARE_MOVEMENT_DOWN && queue_get_position() == first) && queue_order_above_current_position(queue_get_position())){
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
@@ -103,7 +102,6 @@ void fsm_choose_motor_direction(){
         current_direction = HARDWARE_MOVEMENT_DOWN;
         previous_direction = HARDWARE_MOVEMENT_DOWN;
         return;
-
     }
     if ((previous_direction == HARDWARE_MOVEMENT_UP && queue_get_position() == fourth) && queue_order_below_current_position(queue_get_position())){
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
@@ -123,7 +121,7 @@ void fsm_choose_motor_direction(){
         previous_direction = HARDWARE_MOVEMENT_UP;
         return;
     }
-    if(queue_order_above_current_position(queue_get_position()-3)){
+    if(queue_order_above_current_position(queue_get_position()-3)){ //for when the elevator has had an emergency stop between floors
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;
@@ -149,7 +147,7 @@ void fsm_state_machine(){
         //the elevator starts at the first floor:
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
         while(!hardware_read_floor_sensor(0)){
-            queue_delete_queue();
+            queue_delete_queue(); //so that the elevator won't take into consideration orders before it has entered the IDLE-state in first floor
         }
         if(hardware_read_floor_sensor(0)){
             queue_set_position(first);
@@ -203,7 +201,7 @@ void fsm_state_machine(){
                 fsm_update_elevator_position_at_floor();
                 queue_iterate_and_update_queue(); 
 
-                if(fsm_elevator_is_at_floor() && fsm_stop_elevator_at_floor()){ 
+                if(fsm_elevator_is_at_floor() && fsm_stop_elevator_at_floor()){ //can only enter the open_door state if at a floor for safety reasons
                     now_state = OPEN_DOOR;
                     break;
                 }
@@ -233,7 +231,7 @@ void fsm_state_machine(){
                 queue_iterate_and_update_queue(); //the queue has to be able to handle incoming orders while the obstruction signal is high
             }
             hardware_command_door_open(1);
-            queue_iterate_and_update_queue(); //the queue has to be able to handle incoming orders while the door open signal is high
+            queue_iterate_and_update_queue(); //the queue has to be able to handle incoming orders while the timer still runs and the door open signal is set high
         }
 
         queue_remove_order_at_floor_number(queue_get_position());
