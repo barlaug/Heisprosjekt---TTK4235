@@ -55,12 +55,6 @@ int fsm_stop_elevator_at_floor(){
     if (queue_button_inside_at_floor(queue_get_position())){
         return 1;
     }
-    if(queue_button_down_at_floor(queue_get_position()) && current_direction == HARDWARE_MOVEMENT_DOWN){
-        return 1;
-    }
-    if(queue_button_up_at_floor(queue_get_position()) && current_direction == HARDWARE_MOVEMENT_UP){
-        return 1;
-    }
     if ((current_direction == HARDWARE_MOVEMENT_DOWN && queue_button_down_at_floor(queue_get_position()))
     || (current_direction == HARDWARE_MOVEMENT_UP && queue_button_up_at_floor(queue_get_position()))){
         return 1;
