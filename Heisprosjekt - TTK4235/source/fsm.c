@@ -37,11 +37,11 @@ void fsm_update_elevator_position_between_floors(){
         switch (current_direction)
         {
         case (HARDWARE_MOVEMENT_DOWN):
-            queue_set_position(queue_get_position() + 3); //while moving downwards: difference = 3 in the elevator_position enum
+            queue_set_position(queue_get_position() + (HARDWARE_NUMBER_OF_FLOORS-1)); //while moving downwards: difference = HARDWARE_NUMBER_OF_FLOORS - 1 in the elevator_position enum
             break;
 
         case (HARDWARE_MOVEMENT_UP):
-            queue_set_position(queue_get_position() + 4); //while moving upwards: difference = 4 in the elevator_position enum
+            queue_set_position(queue_get_position() + HARDWARE_NUMBER_OF_FLOORS); //while moving upwards: difference = HARDWARE_NUMBER_OF_FLOORS in the elevator_position enum
             break;
 
         case (HARDWARE_MOVEMENT_STOP):
@@ -115,7 +115,7 @@ void fsm_choose_motor_direction(){
         previous_direction = HARDWARE_MOVEMENT_UP;
         return;
     }
-    if(queue_order_above_current_position(queue_get_position()-3)){ //for when the elevator has had an emergency stop between floors
+    if(queue_order_above_current_position(queue_get_position()-(HARDWARE_NUMBER_OF_FLOORS-1))){ //for when the elevator has had an emergency stop between floors
         hardware_command_movement(HARDWARE_MOVEMENT_UP);
         current_direction = HARDWARE_MOVEMENT_UP;
         previous_direction = HARDWARE_MOVEMENT_UP;
@@ -180,7 +180,6 @@ void fsm_state_machine(){
     case (MOVING):
         fsm_choose_motor_direction();
 
-        if(queue_get_position() <= third_fourth){
             fsm_update_elevator_position_between_floors();
             while(1){
                 if(hardware_read_stop_signal()){ 
@@ -200,7 +199,6 @@ void fsm_state_machine(){
                     break;
                 }
             }
-        }
         break;
 
 
